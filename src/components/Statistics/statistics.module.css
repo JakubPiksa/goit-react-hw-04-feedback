@@ -1,0 +1,9 @@
+.stats {
+  padding-left: 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
