@@ -1,6 +1,5 @@
 import React from 'react';
-import css from './statistics.module.css'
-
+import css from './statistics.module.css';
 
 const Statistics = ({ feedbackCounter }) => {
   const countTotalFeedback = () => {
@@ -17,8 +16,10 @@ const Statistics = ({ feedbackCounter }) => {
     return (good / totalFeedback) * 100;
   };
 
-  const totalFeedback = countTotalFeedback();
-  const positivePercentage = countPositiveFeedbackPercentage();
+  const totalFeedback = React.useMemo(countTotalFeedback, [feedbackCounter]);
+  const positivePercentage = React.useMemo(countPositiveFeedbackPercentage, [
+    feedbackCounter,
+  ]);
 
   return (
     <div>
@@ -28,7 +29,7 @@ const Statistics = ({ feedbackCounter }) => {
         <li>Neutral: {feedbackCounter.neutral}</li>
         <li>Bad: {feedbackCounter.bad}</li>
         <li>Total Feedback: {totalFeedback}</li>
-        <li>Positive Percentage: {positivePercentage}%</li>
+        <li>Positive Percentage: {positivePercentage.toFixed(2)}%</li>
       </ul>
     </div>
   );
